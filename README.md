@@ -1,2 +1,2 @@
 # data-engineering-zoomcamp
-For work
+Individual repository
