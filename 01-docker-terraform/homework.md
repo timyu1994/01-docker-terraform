@@ -25,8 +25,6 @@ What's the version of `pip` in the image?
 - 24.2.1
 - 23.3.1
 
-docker run -it --rm --entrypoint=bash python:3.13
-pip -V
 
 ## Question 2. Understanding Docker networking and docker-compose
 
@@ -95,12 +93,6 @@ For the trips in November 2025 (lpep_pickup_datetime between '2025-11-01' and '2
 - 8,007
 - 8,254
 - 8,421
-
-SELECT
-	COUNT(*)
-FROM public.green_taxi_data
-WHERE EXTRACT(MONTH FROM lpep_pickup_datetime) = 11
-	AND trip_distance <= 1
 	
 
 ## Question 4. Longest trip for each day
@@ -113,14 +105,6 @@ Use the pick up time for your calculations.
 - 2025-11-20
 - 2025-11-23
 - 2025-11-25
-
-SELECT
-	lpep_pickup_datetime
-FROM public.green_taxi_data
-WHERE
-	trip_distance < 100
-ORDER BY trip_distance DESC
-LIMIT 1
 	
 
 ## Question 5. Biggest pickup zone
@@ -131,18 +115,6 @@ Which was the pickup zone with the largest `total_amount` (sum of all trips) on 
 - East Harlem South
 - Morningside Heights
 - Forest Hills
-
-SELECT
-	dim."Zone" AS pickup_zone,
-	COUNT(txn."PULocationID") AS trips
-FROM public.green_taxi_data AS txn
-JOIN public.taxi_zones AS dim
-ON txn."PULocationID" = dim."LocationID"
-WHERE lpep_pickup_datetime >= '2025-11-18'
-  AND lpep_pickup_datetime < '2025-11-19'
-GROUP BY dim."Zone"
-ORDER BY trips DESC
-LIMIT 1
 
 ## Question 6. Largest tip
 
@@ -155,19 +127,6 @@ Note: it's `tip` , not `trip`. We need the name of the zone, not the ID.
 - East Harlem North
 - LaGuardia Airport
 
-SELECT
-	pickup."Zone" AS pickup_zone,
-	dropoff."Zone" AS dropoff_zone,
-	txn.tip_amount
-FROM public.green_taxi_data AS txn
-JOIN public.taxi_zones AS pickup
-ON txn."PULocationID" = pickup."LocationID"
-JOIN public.taxi_zones AS dropoff
-ON txn."DOLocationID" = dropoff."LocationID"
-WHERE EXTRACT(MONTH FROM txn.lpep_pickup_datetime) = 11
-	AND pickup."Zone" = 'East Harlem North'
-ORDER BY txn.tip_amount DESC
-LIMIT 1
 
 ## Terraform
 
