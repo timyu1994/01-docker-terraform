@@ -1,6 +1,3 @@
-# data-engineering-zoomcamp
-Individual repository
-
 # Module 1 Homework: Docker & SQL
 
 In this homework we'll prepare the environment and practice
@@ -196,9 +193,3 @@ Answers:
 - terraform init, terraform run -auto-approve, terraform destroy
 - terraform init, terraform apply -auto-approve, terraform destroy
 - terraform import, terraform apply -y, terraform rm
-
-
-oomcamp/
-```
-
-
