@@ -1,20 +1,6 @@
 # Module 1 Homework: Docker & SQL
 
-In this homework we'll prepare the environment and practice
-Docker and SQL
-
-When submitting your homework, you will also need to include
-a link to your GitHub repository or other public code-hosting
-site.
-
-This repository should contain the code for solving the homework.
-
-When your solution has SQL or shell commands and not code
-(e.g. python files) file format, include them directly in
-the README file of your repository.
-
-
-## Question 1. Understanding Docker images
+### Question 1. Understanding Docker images
 
 Run docker with the `python:3.13` image. Use an entrypoint `bash` to interact with the container.
 
@@ -28,7 +14,7 @@ What's the version of `pip` in the image?
 **docker run -it --rm --entrypoint=bash python:3.13  
 pip -V**
 
-## Question 2. Understanding Docker networking and docker-compose
+### Question 2. Understanding Docker networking and docker-compose
 
 Given the following `docker-compose.yaml`, what is the `hostname` and `port` that pgadmin should use to connect to the postgres database?
 
@@ -73,7 +59,7 @@ volumes:
 If multiple answers are correct, select any 
 
 
-## Prepare the Data
+### Prepare the Data
 
 Download the green taxi trips data for November 2025:
 
@@ -87,7 +73,7 @@ You will also need the dataset with zones:
 wget https://github.com/DataTalksClub/nyc-tlc-data/releases/download/misc/taxi_zone_lookup.csv
 ```
 
-## Question 3. Counting short trips
+### Question 3. Counting short trips
 
 For the trips in November 2025 (lpep_pickup_datetime between '2025-11-01' and '2025-12-01', exclusive of the upper bound), how many trips had a `trip_distance` of less than or equal to 1 mile?
 
@@ -103,7 +89,7 @@ WHERE EXTRACT(MONTH FROM lpep_pickup_datetime) = 11
 	AND trip_distance <= 1
 	
 
-## Question 4. Longest trip for each day
+### Question 4. Longest trip for each day
 
 Which was the pick up day with the longest trip distance? Only consider trips with `trip_distance` less than 100 miles (to exclude data errors).
 
@@ -123,7 +109,7 @@ ORDER BY trip_distance DESC
 LIMIT 1
 	
 
-## Question 5. Biggest pickup zone
+### Question 5. Biggest pickup zone
 
 Which was the pickup zone with the largest `total_amount` (sum of all trips) on November 18th, 2025?
 
@@ -144,7 +130,7 @@ GROUP BY dim."Zone"
 ORDER BY trips DESC  
 LIMIT 1
 
-## Question 6. Largest tip
+### Question 6. Largest tip
 
 For the passengers picked up in the zone named "East Harlem North" in November 2025, which was the drop off zone that had the largest tip?
 
@@ -169,18 +155,7 @@ WHERE EXTRACT(MONTH FROM txn.lpep_pickup_datetime) = 11
 ORDER BY txn.tip_amount DESC  
 LIMIT 1
 
-## Terraform
-
-In this section homework we'll prepare the environment by creating resources in GCP with Terraform.
-
-In your VM on GCP/Laptop/GitHub Codespace install Terraform.
-Copy the files from the course repo
-[here](../../../01-docker-terraform/terraform/terraform) to your VM/Laptop/GitHub Codespace.
-
-Modify the files as necessary to create a GCP Bucket and Big Query Dataset.
-
-
-## Question 7. Terraform Workflow
+### Question 7. Terraform Workflow
 
 Which of the following sequences, respectively, describes the workflow for:
 1. Downloading the provider plugins and setting up backend,
